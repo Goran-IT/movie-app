@@ -1,0 +1,19 @@
+.pagination{
+    margin-top: 2rem;
+    text-align: center;
+
+    button{
+        font-size: 2rem;
+        background-color: $white;
+        border-radius: 2rem;
+        margin: 0 2rem;
+        padding: 0 1rem;
+        cursor: pointer;
+        transition: all 250ms ease;
+
+        &:hover{
+            transform: scale(1.1);
+            background-color: wheat;
+        }
+    }
+}

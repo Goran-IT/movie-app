@@ -1,0 +1,24 @@
+.btn{
+    transition: all 250ms ease;
+    cursor: pointer;
+
+    &:hover{
+        transform: scale(1.1);
+    }
+
+    &__regular{
+        padding: .8rem 1.7rem;
+        font-size: 1.5rem;
+        border-radius: 1rem;
+    }
+
+    &__floating{
+        position: fixed;
+        right: 2rem;
+        bottom: 2rem;
+        padding: 1rem;
+        color: $white;
+        background-color: $black;
+        border-radius: 50%;
+    }
+}
