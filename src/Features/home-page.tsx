@@ -2,28 +2,41 @@ import { useEffect, useState } from "react"
 import Container from "../Components/container"
 import Button from "../Components/button";
 import ShuffleIcon from "../assets/Icons/shuffle";
+import { NavLink } from "react-router-dom";
 
-type MovieType= {
+export type CompaniesType ={
+    id:number;
+    name:string
+}
+export type MovieType = {
     id:number;
     title:string
     poster_path:string;
     overview:string;
     original_language:string;
     release_date:string;
+    backdrop_path:string;
+    popularity:number;
+    vote_average:number;
+    production_companies:CompaniesType[];
 }
+export const apiKey = import.meta.env.VITE_API_KEY
+export const apiToken = import.meta.env.VITE_API_TOKEN
 
 const Home = () => {
-    const[showItems, setShowItems] = useState<number>(6)
-    const[page, setPage] = useState<number>(1)
     const[movieList, setMovieList] = useState<MovieType[]>([])
-
+    const[showItems, setShowItems] = useState<number>(6)
+    const[page, setPage] = useState<number>(() => {
+        const storedPage = localStorage.getItem("lastPage");
+        return storedPage ? parseInt(storedPage) : 1;
+      })
 
     const getMovies =()=>{
-        fetch(`https://api.themoviedb.org/3/discover/movie?&page=${page}&api_key=7738e7b9be22e4b0e4100288a6c6eb83`,{
+        fetch(`https://api.themoviedb.org/3/discover/movie?&page=${page}&api_key=${apiKey}`,{
             method:"GET",
             headers: {
                 accept: 'application/json',
-                Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3NzM4ZTdiOWJlMjJlNGIwZTQxMDAyODhhNmM2ZWI4MyIsInN1YiI6IjY0YzhkZWRiZDUxOTFmMDBjNTJhMjMzOSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.uyRlzB8G1p5Jp1rHQhm2SRYHSkQsKTNmeFA6xQCD8Z0'
+                Authorization: apiToken
             }
         })
         .then((res)=> res.json()
@@ -44,21 +57,28 @@ const Home = () => {
             top:0
         })
     };
+    const handleResetLocalStorage = () => {
+        localStorage.clear();
+        window.location.reload()
+      };
 
 useEffect(()=>{
     getMovies()
+    localStorage.setItem("lastPage", page.toString());
 },[showItems,page])
 
   return (
     <>
         <Container>
+            
             <div className="movie__container">
             {movieList.map((movie)=>{
-                return <div className="movie__card" key={movie.id}>
-                    <img className="movie__card__poster" src={`https://image.tmdb.org/t/p/w200/`+movie.poster_path} />
+                return <NavLink to={`/movie/${movie.id}`} className="movie__card" key={movie.id}>
+                    <img className="movie__card__poster" src={`https://image.tmdb.org/t/p/w200/`+movie.poster_path} alt={`Poster of ${movie.title}`} />
                     <h1>{movie.title} ({movie.release_date.slice(0,4)})</h1>
+                    <h3>Rating: {Math.floor(movie.vote_average)} Stars</h3>
                     <h3>Language: {movie.original_language}</h3>
-                    </div>
+                    </NavLink>
                 })}
             </div>
             <div className="movie__container__fotter">
@@ -69,6 +89,7 @@ useEffect(()=>{
                  <button disabled={page<=1} onClick={()=>setPage(page-1)}>&#60; Previous Page</button>
                  <button disabled={page>=500} onClick={()=>setPage(page+1)}>Next Page &#62;</button>
             </div>
+        <Button onClick={handleResetLocalStorage} text="Reset Application"/>
         </Container>
     </>
   )

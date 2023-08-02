@@ -1,5 +1,4 @@
 .movie{
-
     &__container{
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
@@ -14,6 +13,7 @@
     }
 
     &__card{
+        text-decoration: none;
         border: 1px solid $black;
         background-color: $black;
         color: $white;
@@ -21,6 +21,12 @@
         display: flex;
         flex-direction: column;
         min-height: 40rem;
+        cursor: pointer;
+        transition: all 250ms ease;
+        
+        &:hover{
+            transform: scale(1.1);
+        }
 
         &__poster{
             border-top-left-radius: 5rem;

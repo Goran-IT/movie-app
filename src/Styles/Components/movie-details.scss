@@ -1,0 +1,36 @@
+.details{
+        color: $white;
+        max-width: 1100px;
+        margin: 2rem auto;
+
+        h2{
+            span{
+                color: $grey-100;
+                font-size: 1.1rem;
+            }
+        }
+        &__rating{
+            position: absolute;
+            bottom: -2rem;
+            right: 1rem;
+        }
+
+        &__background{
+            display: flex;
+            height: 27rem;
+            background-size: contain;
+            border: 1px solid $white;
+            background-repeat: no-repeat;
+            position: relative;
+            background-position: center;
+
+            &__text{
+                background-color: $black;
+                max-width: 30rem;
+                padding: .1rem  1rem;
+                align-self: end;
+                border-top-right-radius: 3rem;
+                border: 1px solid $white;
+            }
+        }
+}

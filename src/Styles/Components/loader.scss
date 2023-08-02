@@ -1,0 +1,80 @@
+.loader {
+  width: 100vw;
+  height: 100vh;
+  background-color: $black;
+  opacity: .8;
+  position: fixed;
+  color: $orange-300;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 5rem;
+
+  &__text {
+    font-size: 8rem;
+    margin: 1rem;
+    color: $orange-500;
+    text-decoration: underline;
+
+    &__container{
+      background-color:$black;
+      padding: 1rem;
+      border-radius: 1rem;
+      font-size: 8rem;
+    }
+  }
+
+  &__spinner {
+    background-color: $black;
+    position: fixed;
+    width: 10rem;
+    height: 10rem;
+    border: 1rem solid $orange-500;
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+  }
+
+  &__dot {
+    transition: all 250ms ease;
+    margin: 0.5rem;
+    font-size: 8rem;
+
+    &--first {
+      animation: animacija 2s linear infinite;
+    }
+    &--second {
+      animation: animacija 2s linear infinite;
+      animation-delay: 500ms;
+    }
+    &--third {
+      animation: animacija 2s linear infinite;
+      animation-delay: 1000ms;
+    }
+  }
+}
+
+@keyframes animacija {
+  0% {
+    opacity: 0;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
