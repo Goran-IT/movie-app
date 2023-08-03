@@ -6,7 +6,7 @@ interface StarRatingProps {
   onRatingChange: (rating: number) => void;
 }
 
-const StarRating: React.FC<StarRatingProps> = ({ rating, onRatingChange }) => {
+const StarRating= ({ rating, onRatingChange }:StarRatingProps) => {
   const [hoverRating, setHoverRating] = useState<number | null>(null);
 
   const handleMouseEnter = (index: number) => {

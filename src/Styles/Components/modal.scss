@@ -1,0 +1,44 @@
+.modal{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 1;
+    justify-content: start;
+    transform: translate(-50%,-50%);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 30rem;
+    height: 50rem;
+    background-color: $white;
+    border: 1rem groove $black;
+
+    &__layout{
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        width: 100vw;
+        background-color: $black;
+        z-index: 1;
+        opacity: .8;
+    }
+
+    &__option{
+        text-align: start;
+        font-size: 1.5rem;
+        margin:1rem;
+
+        input,label{
+            cursor: pointer;
+        }
+    }
+
+    &__text{
+        color: $white;
+
+        &--red{
+            color: $red-300;
+        }
+    }
+}

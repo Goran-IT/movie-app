@@ -12,7 +12,7 @@ type LoaderProps = {
               <div className="loader">
                 <div className="loader__text__container">
   
-                Loading <span className="loader__text"> {text} </span>
+                <span className="loader__text"> {text} </span>
                 <span className="loader__dot loader__dot--first">.</span>
                 <span className="loader__dot loader__dot--second">.</span>
                 <span className="loader__dot loader__dot--third">.</span>

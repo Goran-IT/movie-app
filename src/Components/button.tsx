@@ -7,7 +7,8 @@ type ButtonProps= {
 const Button = ({icon,floating=false,onClick,text="Click"}:ButtonProps) => {
   return (
     <div>
-        {floating ? <button className="btn btn__floating" onClick={onClick}>{icon}</button>:<button className="btn btn__regular" onClick={onClick}>{text}</button>}
+        {floating ? <button className="btn btn__floating" onClick={onClick}>{icon}</button>:
+        <button className="btn btn__regular" onClick={onClick}>{text}</button>}
 
     </div>
     
